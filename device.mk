@@ -34,6 +34,27 @@ PRODUCT_AAPT_PREF_CONFIG := xxxhdpi
 TARGET_SCREEN_HEIGHT := 2560
 TARGET_SCREEN_WIDTH := 1440
 
+# Override heap growth limit due to high display density on device
+ PRODUCT_PROPERTY_OVERRIDES += \
+     dalvik.vm.heapgrowthlimit=256m \
+ 
+
+# Dalvik
+ $(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
+ $(call inherit-product, device/leeco/x2/common/common64.mk)
+ 
+ # HWUI common settings
+ PRODUCT_PROPERTY_OVERRIDES += \
+     ro.hwui.gradient_cache_size=1 \
+     ro.hwui.drop_shadow_cache_size=6 \
+     ro.hwui.r_buffer_cache_size=8 \
+     ro.hwui.texture_cache_flushrate=0.4 \
+     ro.hwui.text_small_cache_width=1024 \
+     ro.hwui.text_small_cache_height=1024 \
+     ro.hwui.text_large_cache_width=2048 \
+     ro.hwui.text_large_cache_height=1024
+  
+
 # Ramdisk
 PRODUCT_COPY_FILES += \
     $(call find-copy-subdir-files,*,device/leeco/x2/rootdir/root,root)
