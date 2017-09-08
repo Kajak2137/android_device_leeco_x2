@@ -149,7 +149,7 @@ BT := javax.btobex
 BT += libattrib_static
 BT += hcidump.sh
 BT += libbt-vendor
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/google/marlin/bluetooth
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/leeco/x2/bluetooth
 
 #C2DColorConvert
 C2DCC := libc2dcolorconvert
@@ -836,18 +836,13 @@ PRODUCT_COPY_FILES += \
 #PRODUCT_PACKAGE_OVERLAYS += device/google/marlin/common/product/overlay
 
 # include additional build utilities
--include device/google/marlin/common/utils.mk
+-include device/leeco/x2/common/utils.mk
 
 #Enabling Ring Tones
 #include frameworks/base/data/sounds/OriginalAudio.mk
 
 #Enabling video for live effects
 -include frameworks/base/data/videos/VideoPackage1.mk
-
-#TODO: move to device.mk
-# dm-verity definitions
-PRODUCT_SYSTEM_VERITY_PARTITION=/dev/block/platform/soc/624000.ufshc/by-name/system
-$(call inherit-product, build/target/product/verity.mk)
 
 #skip boot jars check
 SKIP_BOOT_JARS_CHECK := true
